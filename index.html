@@ -46,6 +46,10 @@
             position: relative;
             overflow: hidden;
         }
+        .video-container video {
+            pointer-events: none;
+            user-select: none;
+        }
         /* Ocultar scrollbar pero mantener funcionalidad de deslizamiento */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -258,6 +262,31 @@
 
     <script>
         lucide.createIcons();
+
+        // Reproducción automática persistente: todos los videos permanecen en loop,
+        // sin controles y sin depender de una interacción del visitante.
+        const galleryVideos = document.querySelectorAll('.video-container video');
+        const keepVideoPlaying = (video) => {
+            video.muted = true;
+            video.controls = false;
+            video.autoplay = true;
+            video.loop = true;
+            video.setAttribute('playsinline', '');
+            const playback = video.play();
+            if (playback && typeof playback.catch === 'function') playback.catch(() => {});
+        };
+
+        galleryVideos.forEach((video) => {
+            keepVideoPlaying(video);
+            video.addEventListener('canplay', () => keepVideoPlaying(video));
+            video.addEventListener('pause', () => keepVideoPlaying(video));
+            video.addEventListener('ended', () => keepVideoPlaying(video));
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) galleryVideos.forEach(keepVideoPlaying);
+        });
+        window.addEventListener('pageshow', () => galleryVideos.forEach(keepVideoPlaying));
 
         // Lógica del carrusel de certificados
         const carousel = document.getElementById('certCarousel');
