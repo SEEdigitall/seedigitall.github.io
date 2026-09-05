@@ -50,6 +50,68 @@
             pointer-events: none;
             user-select: none;
         }
+        .video-container {
+            cursor: pointer;
+        }
+        .video-container::after {
+            content: '▶  Ver video';
+            position: absolute;
+            inset: 50% auto auto 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.55rem 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 9999px;
+            background: rgba(0, 0, 0, 0.62);
+            color: white;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            opacity: 0;
+            transition: opacity 0.25s ease, background 0.25s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .video-container:hover::after,
+        .video-container:focus-visible::after {
+            opacity: 1;
+        }
+        .video-container:focus-visible {
+            outline: 2px solid #34d399;
+            outline-offset: 3px;
+        }
+        body.video-modal-open {
+            overflow: hidden;
+        }
+        #videoModal {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+        #videoModal.is-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        #videoModal .modal-panel {
+            transform: scale(0.96);
+            transition: transform 0.25s ease;
+        }
+        #videoModal.is-open .modal-panel {
+            transform: scale(1);
+        }
+        body > nav,
+        body > header,
+        body > section,
+        body > footer {
+            transition: filter 0.25s ease;
+        }
+        body.video-modal-open > nav,
+        body.video-modal-open > header,
+        body.video-modal-open > section,
+        body.video-modal-open > footer {
+            filter: blur(8px);
+        }
         /* Ocultar scrollbar pero mantener funcionalidad de deslizamiento */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -111,18 +173,12 @@
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-10">
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="mtvir.MP4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>19,2mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center scale-[1.02] shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="sp.MOV" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>94,6mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="vidfz.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>165,3mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="vidcr.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>101,7mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="vidmt.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>109,8mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="xtzroja.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>82,5mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="doble.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>45,1mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center scale-[1.02] shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="mt9.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>100,4mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="beisbol.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>89,4mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="xtzdoble.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>119,3mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="jor.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>30,6mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50"><video class="w-full h-full object-cover " autoplay muted loop playsinline><source src="fzsp.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>25,7mil</span></div></div>
+                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 1" data-video-src="mtvir.MP4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="mtvir.MP4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>19,2mil</span></div></div>
+                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center scale-[1.02] shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 2" data-video-src="sp.MOV"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="sp.MOV" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>94,6mil</span></div></div>
+                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 3" data-video-src="vidfz.mp4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="vidfz.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>165,3mil</span></div></div>
+                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 4" data-video-src="vidcr.mp4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="vidcr.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>101,7mil</span></div></div>
+                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 5" data-video-src="vidmt.mp4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="vidmt.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>109,8mil</span></div></div>
+                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 6" data-video-src="xtzroja.mp4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="xtzroja.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>82,5mil</span></div></div>
                 </div>
 
                 <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-10 max-w-5xl">
@@ -243,6 +299,24 @@
         </div>
     </footer>
 
+    <!-- Visor de video: se mantiene en la misma página y permite activar el audio -->
+    <div id="videoModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+        <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" data-close-video></div>
+        <div class="modal-panel relative z-10 w-full max-w-md rounded-3xl border border-emerald-400/30 bg-[#090d0b] p-3 md:p-5 shadow-[0_0_80px_rgba(16,185,129,0.18)]">
+            <div class="flex items-center justify-between gap-4 px-2 pb-3">
+                <div>
+                    <p class="text-emerald-400 font-mono text-[10px] uppercase tracking-[0.25em]">Reproducción</p>
+                    <h2 id="videoModalTitle" class="text-sm font-bold text-white">Video de la galería</h2>
+                </div>
+                <button type="button" class="rounded-full border border-white/10 p-2 text-gray-300 transition-colors hover:border-emerald-400 hover:text-emerald-400" data-close-video aria-label="Cerrar video">
+                    <i data-lucide="x" class="h-5 w-5"></i>
+                </button>
+            </div>
+            <video id="modalVideo" class="mx-auto max-h-[75vh] w-full rounded-2xl bg-black object-contain" controls playsinline preload="metadata"></video>
+            <p class="px-2 pt-3 text-center text-[10px] text-gray-500">Usa los controles para reproducir, pausar y activar el sonido.</p>
+        </div>
+    </div>
+
     <script>
         lucide.createIcons();
 
@@ -252,6 +326,44 @@
 
         document.getElementById('nextCert').onclick = () => carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
         document.getElementById('prevCert').onclick = () => carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+
+        // Visor accesible para los seis videos conservados.
+        const videoModal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const videoCards = document.querySelectorAll('[data-video-src]');
+        let lastFocusedVideoCard;
+
+        function openVideo(card) {
+            lastFocusedVideoCard = card;
+            modalVideo.src = card.dataset.videoSrc;
+            videoModal.classList.add('is-open');
+            document.body.classList.add('video-modal-open');
+            modalVideo.focus();
+            modalVideo.play().catch(() => {});
+        }
+
+        function closeVideo() {
+            modalVideo.pause();
+            modalVideo.removeAttribute('src');
+            modalVideo.load();
+            videoModal.classList.remove('is-open');
+            document.body.classList.remove('video-modal-open');
+            if (lastFocusedVideoCard) lastFocusedVideoCard.focus();
+        }
+
+        videoCards.forEach((card) => {
+            card.addEventListener('click', () => openVideo(card));
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openVideo(card);
+                }
+            });
+        });
+        document.querySelectorAll('[data-close-video]').forEach((element) => element.addEventListener('click', closeVideo));
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && videoModal.classList.contains('is-open')) closeVideo();
+        });
     </script>
 </body>
 </html>
