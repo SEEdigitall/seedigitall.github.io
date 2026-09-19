@@ -115,6 +115,24 @@
         /* Ocultar scrollbar pero mantener funcionalidad de deslizamiento */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Tarjetas de servicios: interacción de giro en desktop y móvil */
+        .services-grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1rem; }
+        @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; } }
+        .service-card { min-height: 410px; perspective: 1400px; cursor: pointer; }
+        .service-card-featured { background: linear-gradient(145deg, rgba(16,185,129,.16), rgba(255,255,255,.03) 55%, rgba(37,99,235,.12)); border-color: rgba(52,211,153,.35); }
+        .service-card-inner { position: relative; min-height: 410px; height: 100%; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.23,1,.32,1); }
+        .service-card.is-flipped .service-card-inner { transform: rotateY(180deg); }
+        .service-face { position: absolute; inset: 0; display: flex; flex-direction: column; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .service-back { transform: rotateY(180deg); background: rgba(7,16,13,.96); border-radius: 28px; }
+        .service-number { color: #34d399; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; }
+        .service-hint { display: inline-flex; align-items: center; gap: .4rem; margin-top: 1.4rem; color: rgba(167,243,208,.75); font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; }
+        .service-list { display: grid; gap: .65rem; color: #d1d5db; font-size: .82rem; line-height: 1.45; }
+        .service-list li { position: relative; padding-left: 1.15rem; }
+        .service-list li::before { content: '＋'; position: absolute; left: 0; color: #34d399; font-weight: 700; }
+        .service-note { margin-top: auto; padding: .75rem .9rem; border: 1px solid rgba(52,211,153,.15); border-radius: .85rem; color: #9ca3af; font-size: .7rem; line-height: 1.45; }
+        .service-card:focus-visible { outline: 2px solid #34d399; outline-offset: 4px; }
+        @media (prefers-reduced-motion: reduce) { .service-card-inner { transition: none; } }
     </style>
 </head>
 <body>
@@ -126,6 +144,7 @@
             <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-400">
                 <a href="#inicio" class="hover:text-emerald-400 transition-colors">Inicio</a>
                 <a href="#proyectos" class="hover:text-emerald-400 transition-colors">Casos de éxito</a>
+                <a href="#servicios" class="hover:text-emerald-400 transition-colors">Servicios</a>
                 <a href="#certificaciones" class="hover:text-emerald-400 transition-colors">Certificaciones</a>
                 <a href="#contacto" class="hover:text-emerald-400 transition-colors">WhatsaApp</a>
             </div>
@@ -172,9 +191,9 @@
                     <span class="text-emerald-400 font-mono text-[10px] md:text-sm border border-emerald-400/20 px-3 py-1 rounded-lg">+1.6M Views/30 días</span>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-10">
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 1" data-video-src="mtvir.MP4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="mtvir.MP4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>19,2mil</span></div></div>
-                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center scale-[1.02] shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 2" data-video-src="sp.MOV"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="sp.MOV" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>94,6mil</span></div></div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 mb-10">
+                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 1" data-video-src="mtvir.mp4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="mtvir.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>19,2mil</span></div></div>
+                    <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center scale-[1.02] shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 2" data-video-src="sp.mp4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="sp.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>94,6mil</span></div></div>
                     <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 3" data-video-src="vidfz.mp4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="vidfz.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>165,3mil</span></div></div>
                     <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 4" data-video-src="vidcr.mp4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="vidcr.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>101,7mil</span></div></div>
                     <div class="video-container rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/50" role="button" tabindex="0" aria-label="Reproducir video 5" data-video-src="vidmt.mp4"><video class="w-full h-full object-cover" autoplay muted loop playsinline><source src="vidmt.mp4" type="video/mp4"></video><div class="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[9px] md:text-xs font-semibold drop-shadow-lg pointer-events-none"><i data-lucide="eye" class="w-3 h-3"></i><span>109,8mil</span></div></div>
@@ -206,6 +225,87 @@
                     <span class="text-xs font-semibold px-4 py-2 bg-emerald-500/10 text-emerald-400 rounded-full">Meta Ads</span>
                     <span class="text-xs font-semibold px-4 py-2 bg-blue-500/10 text-blue-400 rounded-full">Contenido audiovisual</span>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-20 md:py-28 px-6 relative overflow-hidden">
+        <div class="absolute top-1/3 right-0 w-80 h-80 bg-blue-500/10 blur-[130px] rounded-full pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto relative">
+            <div class="max-w-3xl mb-12 md:mb-16">
+                <p class="text-emerald-400 font-mono text-[10px] md:text-xs uppercase tracking-[0.28em] mb-4">Ecosistema digital integral</p>
+                <h2 class="text-3xl md:text-6xl font-black tracking-tighter mb-5">Servicios para convertir <span class="text-gradient">atención en oportunidades.</span></h2>
+                <p class="text-gray-400 text-base md:text-lg leading-relaxed">Elige el apoyo que tu negocio necesita hoy. Toca cada tarjeta para descubrir el alcance completo del servicio.</p>
+            </div>
+
+            <div class="services-grid">
+                <article class="service-card glass-card rounded-[28px]" data-flip-card role="button" tabindex="0" aria-pressed="false" aria-label="Ver detalles de Página Web / Landing Page Anual Integral">
+                    <div class="service-card-inner">
+                        <div class="service-face service-front p-6 md:p-8">
+                            <div class="flex justify-between items-start gap-4 mb-12"><span class="service-number">01</span><i data-lucide="monitor-smartphone" class="w-7 h-7 text-emerald-400"></i></div>
+                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-4">Página Web / Landing Page</h3>
+                            <p class="text-gray-400 leading-relaxed mb-8">Tu oferta presentada con claridad, diseño estratégico y contacto directo hacia WhatsApp.</p>
+                            <div class="mt-auto"><p class="text-emerald-400 font-mono text-xs uppercase tracking-widest mb-1">Inversión anual</p><p class="text-white text-2xl font-black">Desde $1.100.000 <span class="text-sm text-gray-400">COP / año</span></p></div>
+                            <span class="service-hint">Toca para ver el alcance <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>
+                        </div>
+                        <div class="service-face service-back p-6 md:p-8" aria-hidden="true">
+                            <div class="flex justify-between items-start mb-5"><span class="service-number">01 · Incluye</span><i data-lucide="rotate-ccw" class="w-5 h-5 text-emerald-400"></i></div>
+                            <ul class="service-list"><li>Diseño y desarrollo completo de una landing de alta conversión.</li><li>Estructura estratégica para oferta, beneficios y diferenciales.</li><li>CTA y contacto directo hacia WhatsApp.</li><li>Dominio .com y hosting de alto rendimiento por 1 año.</li><li>Entrega lista para publicar, compartir y pautar.</li></ul>
+                            <p class="service-note">Mantenimiento, modificaciones y renovación después de 12 meses se cotizan por separado.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="service-card glass-card rounded-[28px]" data-flip-card role="button" tabindex="0" aria-pressed="false" aria-label="Ver detalles de Gestión de Redes Sociales">
+                    <div class="service-card-inner">
+                        <div class="service-face service-front p-6 md:p-8">
+                            <div class="flex justify-between items-start gap-4 mb-12"><span class="service-number">02</span><i data-lucide="share-2" class="w-7 h-7 text-blue-400"></i></div>
+                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-4">Gestión de Redes Sociales</h3>
+                            <p class="text-gray-400 leading-relaxed mb-8">Una dirección estratégica de contenidos para convertir tus redes en posicionamiento y confianza.</p>
+                            <div class="mt-auto"><p class="text-blue-400 font-mono text-xs uppercase tracking-widest mb-1">Servicio mensual</p><p class="text-white text-2xl font-black">$950.000 <span class="text-sm text-gray-400">COP / mes</span></p></div>
+                            <span class="service-hint">Toca para ver el alcance <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>
+                        </div>
+                        <div class="service-face service-back p-6 md:p-8" aria-hidden="true">
+                            <div class="flex justify-between items-start mb-5"><span class="service-number">02 · Incluye</span><i data-lucide="rotate-ccw" class="w-5 h-5 text-blue-400"></i></div>
+                            <ul class="service-list"><li>Configuración y optimización de perfiles empresariales en Meta.</li><li>Dirección editorial y calendario mensual.</li><li>Entre 12 y 16 publicaciones mensuales.</li><li>Diseño de piezas visuales y programación integral.</li><li>Historias, llamados a la acción e informe de desempeño.</li></ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="service-card glass-card rounded-[28px]" data-flip-card role="button" tabindex="0" aria-pressed="false" aria-label="Ver detalles de Campañas de Meta Ads">
+                    <div class="service-card-inner">
+                        <div class="service-face service-front p-6 md:p-8">
+                            <div class="flex justify-between items-start gap-4 mb-12"><span class="service-number">03</span><i data-lucide="megaphone" class="w-7 h-7 text-orange-400"></i></div>
+                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-4">Campañas de Meta Ads</h3>
+                            <p class="text-gray-400 leading-relaxed mb-8">Pon tu oferta frente a las personas con mayor potencial de convertirse en clientes.</p>
+                            <div class="mt-auto"><p class="text-orange-400 font-mono text-xs uppercase tracking-widest mb-1">Servicio mensual</p><p class="text-white text-2xl font-black">$750.000 <span class="text-sm text-gray-400">COP / mes</span></p></div>
+                            <span class="service-hint">Toca para ver el alcance <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>
+                        </div>
+                        <div class="service-face service-back p-6 md:p-8" aria-hidden="true">
+                            <div class="flex justify-between items-start mb-5"><span class="service-number">03 · Incluye</span><i data-lucide="rotate-ccw" class="w-5 h-5 text-orange-400"></i></div>
+                            <ul class="service-list"><li>Arquitectura de campañas según objetivo y etapa comercial.</li><li>Investigación de públicos con intención de compra.</li><li>Anuncios y rutas de conversión hacia WhatsApp.</li><li>Conceptos, textos y creatividades para pruebas.</li><li>Optimización semanal y reporte ejecutivo mensual.</li></ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="service-card service-card-featured glass-card rounded-[28px]" data-flip-card role="button" tabindex="0" aria-pressed="false" aria-label="Ver detalles del Paquete Full Stack">
+                    <div class="service-card-inner">
+                        <div class="service-face service-front p-6 md:p-8">
+                            <div class="flex justify-between items-start gap-4 mb-10"><span class="service-number">04 · Solución integral</span><i data-lucide="layers-3" class="w-7 h-7 text-emerald-300"></i></div>
+                            <p class="text-emerald-300 font-mono text-[10px] uppercase tracking-[0.22em] mb-3">Sistema SEEdigital Full Stack</p>
+                            <h3 class="text-3xl md:text-4xl font-black tracking-tight mb-4">Contenido + Prospectos</h3>
+                            <p class="text-gray-300 leading-relaxed mb-8">Delegación completa de tu presencia digital en Meta, desde el contenido hasta la generación de oportunidades.</p>
+                            <div class="mt-auto"><p class="text-emerald-300 font-mono text-xs uppercase tracking-widest mb-1">Servicio mensual · Sin permanencia</p><p class="text-white text-2xl font-black">$2.000.000 <span class="text-sm text-gray-300">COP / mes</span></p></div>
+                            <span class="service-hint">Toca para ver el alcance <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>
+                        </div>
+                        <div class="service-face service-back p-6 md:p-8" aria-hidden="true">
+                            <div class="flex justify-between items-start mb-5"><span class="service-number">04 · Incluye</span><i data-lucide="rotate-ccw" class="w-5 h-5 text-emerald-300"></i></div>
+                            <ul class="service-list"><li>Gestión integral de Facebook e Instagram.</li><li>12 a 16 contenidos mensuales y dirección editorial.</li><li>Campañas de adquisición orientadas a conversaciones y prospectos.</li><li>Optimización continua, creatividades y reporte mensual.</li><li><strong>Bono:</strong> $500.000 COP mensuales de crédito publicitario en Meta.</li></ul>
+                            <p class="service-note">Pago anticipado, sin permanencia mínima. Extras y producciones especiales se cotizan aparte.</p>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -288,13 +388,22 @@
 
     <!-- Final CTA -->
     <footer id="contacto" class="pt-12 pb-32 px-6">
-        <div class="max-w-4xl mx-auto glass-card p-16 rounded-[48px] text-center relative overflow-hidden">
-            <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-emerald-500/15 blur-[120px] rounded-full"></div>
-            <h2 class="text-4xl md:text-7xl font-black mb-8 leading-tight tracking-tighter">¿Necesitas ayuda?</h2>
-            <p class="text-xl text-gray-400 mb-12 max-w-xl mx-auto">Estoy disponible para nuevos proyectos que busquen resultados medibles y un diseño fuera de serie.</p>
-                <a href="https://wa.me/573227693719" class="glow-button inline-block bg-white text-black px-14 py-6 rounded-full font-black text-xl">WhatsaApp</a>
-            <div class="mt-20 text-[10px] uppercase tracking-widest text-gray-600">
-                © 2026 SEEdigital • Creative Growth Partner
+        <div class="max-w-4xl mx-auto glass-card p-7 md:p-16 rounded-[40px] md:rounded-[48px] text-left relative overflow-hidden">
+            <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-emerald-500/15 blur-[120px] rounded-full pointer-events-none"></div>
+            <div class="relative">
+                <p class="text-emerald-400 font-mono text-[10px] uppercase tracking-[0.28em] mb-5">Conversemos sobre tu siguiente movimiento</p>
+                <h2 class="text-4xl md:text-7xl font-black mb-6 leading-tight tracking-tighter">Cuéntame qué necesitas.</h2>
+                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl">Escribe tu mensaje aquí y te llevaré a WhatsApp con la consulta lista para empezar a hablar.</p>
+                <form id="whatsappForm" class="space-y-5">
+                    <label for="whatsappMessage" class="sr-only">Tu mensaje</label>
+                    <textarea id="whatsappMessage" name="message" rows="5" required minlength="5" placeholder="Hola, me interesa conocer más sobre..." class="w-full rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white placeholder:text-gray-600 outline-none transition focus:border-emerald-400/70 focus:ring-2 focus:ring-emerald-400/20 resize-y"></textarea>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                        <button type="submit" class="glow-button inline-flex items-center justify-center gap-3 bg-white text-black px-8 py-4 rounded-full font-black text-base">Abrir chat de WhatsApp <i data-lucide="arrow-up-right" class="w-5 h-5"></i></button>
+                        <span class="text-xs text-gray-500">Se abrirá WhatsApp con tu mensaje preparado.</span>
+                    </div>
+                    <p id="whatsappHint" class="hidden text-sm text-rose-400" role="alert"></p>
+                </form>
+                <div class="mt-20 text-[10px] uppercase tracking-widest text-gray-600">© 2026 SEEdigital • Creative Growth Partner</div>
             </div>
         </div>
     </footer>
@@ -326,6 +435,38 @@
 
         document.getElementById('nextCert').onclick = () => carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
         document.getElementById('prevCert').onclick = () => carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+
+
+        // Tarjetas de servicios: giro al hacer clic o usar Enter/Espacio.
+        document.querySelectorAll('[data-flip-card]').forEach((card) => {
+            const toggle = () => {
+                const flipped = card.classList.toggle('is-flipped');
+                card.setAttribute('aria-pressed', String(flipped));
+                card.querySelectorAll('.service-face').forEach((face) => face.setAttribute('aria-hidden', String(face.classList.contains('service-back') ? !flipped : flipped)));
+            };
+            card.addEventListener('click', toggle);
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggle(); }
+            });
+        });
+
+        // Prepara la consulta y la abre en el chat de WhatsApp.
+        const whatsappForm = document.getElementById('whatsappForm');
+        const whatsappMessage = document.getElementById('whatsappMessage');
+        const whatsappHint = document.getElementById('whatsappHint');
+        whatsappForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const message = whatsappMessage.value.trim();
+            if (message.length < 5) {
+                whatsappHint.textContent = 'Escribe un mensaje un poco más detallado para poder ayudarte.';
+                whatsappHint.classList.remove('hidden');
+                whatsappMessage.focus();
+                return;
+            }
+            whatsappHint.classList.add('hidden');
+            const whatsappUrl = `https://wa.me/573227693719?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        });
 
         // Visor accesible para los seis videos conservados.
         const videoModal = document.getElementById('videoModal');
