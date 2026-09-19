@@ -140,7 +140,12 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-50 px-4 md:px-6 py-4 bg-[#050505]/90 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <span class="text-lg md:text-xl font-extrabold tracking-tighter">SEEdigital</span>
+            <a href="#inicio" class="flex items-center gap-3 group" aria-label="SEEdigital, volver al inicio">
+                <span class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border border-white/15 bg-black shadow-[0_0_24px_rgba(255,255,255,0.08)] transition-transform duration-300 group-hover:scale-105">
+                    <img src="see-digital-logo.png" alt="Logo SEEdigital" class="w-full h-full object-cover">
+                </span>
+                <span class="text-lg md:text-xl font-extrabold tracking-tighter">SEEdigital</span>
+            </a>
             <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-400">
                 <a href="#inicio" class="hover:text-emerald-400 transition-colors">Inicio</a>
                 <a href="#proyectos" class="hover:text-emerald-400 transition-colors">Casos de éxito</a>
@@ -148,8 +153,16 @@
                 <a href="#certificaciones" class="hover:text-emerald-400 transition-colors">Certificaciones</a>
                 <a href="#contacto" class="hover:text-emerald-400 transition-colors">WhatsaApp</a>
             </div>
-            <div class="flex items-center gap-5">
-                <a href="https://www.linkedin.com/in/eduar-espitia-b4bb02224/" target="_blank" aria-label="LinkedIn"
+            <div class="flex items-center gap-4">
+                <a href="https://www.tiktok.com/@seedigital" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
+                   class="text-gray-400 hover:text-emerald-400 hover:scale-110 transition-all duration-300">
+                    <i class="fa-brands fa-tiktok text-lg md:text-xl"></i>
+                </a>
+                <a href="https://www.instagram.com/soyeduarespitia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                   class="text-gray-400 hover:text-emerald-400 hover:scale-110 transition-all duration-300">
+                    <i class="fa-brands fa-instagram text-lg md:text-xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/eduar-espitia-b4bb02224/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
                    class="text-gray-400 hover:text-emerald-400 hover:scale-110 transition-all duration-300">
                     <i class="fa-brands fa-linkedin-in text-xl"></i>
                 </a>
