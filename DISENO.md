@@ -1,31 +1,26 @@
-# Dirección de diseño — SEEdigital v2
+# Dirección de diseño — SEEdigital v3 híbrida
 
-## Concepto
+## Decisión
 
-**El tablero digital de una moto de carreras.** La interfaz usa la lógica de un panel de instrumentos: luces de cambio, tacómetro, odómetro, combustible y lecturas precisas. Esa metáfora conecta con la experiencia de Eduar en motos sin encerrar la marca en ese sector: los rótulos hablan de conversaciones, inversión y visualizaciones.
+Esta versión mezcla la **información, estructura y funcionalidades de v2** con el **lenguaje visual de la página original**. No vuelve al contenido anterior: conserva los datos reales, precios, calculadora, selector de meses, sistema con IA, FAQ y flujos de WhatsApp de la versión publicada.
+
+## Qué recupera de la versión original
+
+La interfaz vuelve a un fondo oscuro casi negro, navegación fija con blur, tarjetas tipo glass, brillos verde/azul, botones luminosos y una sensación de portafolio tecnológico. También recupera el logo circular en navegación y footer, y una presentación más compacta para la galería y los bloques de servicios.
+
+## Qué conserva de la versión nueva
+
+El hero sigue explicando en cinco segundos qué hace Eduar. El tablero mantiene sus métricas exactas, selector de mes, barra de transparencia y gráfico. Se mantienen los seis videos existentes, los cinco planes y sus precios, la calculadora de conversaciones, el sistema de cuatro pasos, la sección de IA, sectores, certificaciones, FAQ, formulario y mensajes prellenados por contexto.
 
 ## Paleta
 
-- **Concreto `#E6E9ED`** — fondo principal, claro y técnico.
-- **Asfalto `#1B2330`** — tablero, navegación y bloques de contraste.
-- **Cobalto `#2340E8`** — acciones, enlaces y lecturas activas.
-- **Lima tablero `#C7F36B`** — luces de cambio y acentos de medición.
-- **Blanco `#FFFFFF`** — superficies y texto sobre asfalto.
-- **Línea roja `#FF4A1C`** — WhatsApp y zona crítica del tacómetro; no es decoración.
+- **Negro `#050505`** — fondo principal.
+- **Panel `#0D1117`** — tarjetas, instrumentos y formularios.
+- **Verde neón `#00FF88`** — acciones, estados activos y cifras destacadas.
+- **Azul eléctrico `#0070F3`** — profundidad, resaltados y panel de resultados.
+- **Rojo `#FF4A1C`** — CTA principal y acentos de contacto.
+- **Blanco frío `#E5E7EB`** — texto principal.
 
-## Tipografía
+## Principios
 
-- **Big Shoulders Display**: títulos, precios, odómetros y números; comprimida, enérgica y legible en grande.
-- **Instrument Sans**: cuerpo, navegación, formularios y explicaciones; neutral para que el sistema funcione fuera de automotriz.
-
-## Layout y principios
-
-- Alineación izquierda, bloques a ancho completo y máximo de lectura corto.
-- Ritmo alternado entre concreto y asfalto, sin llenar todo de tarjetas.
-- Movimiento solo como respuesta o como lectura del avance: scroll, cambio de mes, apertura de plan y video en viewport.
-- Sin testimonios inventados, logos de clientes, fotos de relleno ni promesas de ventas.
-- Los botones describen la consecuencia: diagnóstico, WhatsApp o cotización.
-
-## Qué cambié frente a una landing genérica
-
-En lugar del combo habitual de fondo oscuro + degradado + tarjetas con sombra + animaciones de entrada, la página tiene una gramática propia: un tablero de datos verificables, selector temporal, barra de transparencia orgánico/pauta y una calculadora que deja visibles sus supuestos. La estética de competición aparece en la instrumentación y la tipografía, no como una colección de adornos de motos. El resultado sigue siendo adaptable a industrial, salud, retail, agro y servicios locales.
+La estética original vuelve como sistema, no como decoración aislada: contraste alto, bloques con borde fino, brillos moderados y acciones claras. Los datos siguen teniendo prioridad sobre los efectos. Las animaciones solo responden al scroll, al cambio de mes, al video y a la apertura de contenidos; `prefers-reduced-motion` deja la experiencia estática.
