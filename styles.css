@@ -14,3 +14,42 @@
 
 /* Mobile safety: keep the page within the viewport and use a small round about icon. */
 html,body{max-width:100%;overflow-x:hidden}img,video{max-width:100%}.about-logo{min-height:0;align-items:flex-start}.about-logo img{width:78px;height:78px;padding:12px;border-radius:50%;object-fit:contain;background:#050505;border:1px solid rgba(0,255,136,.35);filter:drop-shadow(0 0 18px rgba(0,255,136,.15))}@media(max-width:520px){.about-logo{min-height:0}.about-logo img{width:72px;height:72px;padding:11px}}
+
+/* === Mejoras conversión v2 · 2026-10-14 === */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:16;height:36px;display:flex;align-items:center;background:#03130a;border-bottom:1px solid rgba(0,255,136,.25)}
+.topbar-inner{display:flex;align-items:center;justify-content:center;gap:14px;width:min(1180px,calc(100% - 40px));margin-inline:auto;font-size:.78rem;color:#bfe9d2}
+.topbar-inner strong{color:var(--green)}
+.topbar-cta{background:var(--green);color:#04140b!important;font-weight:800;padding:5px 12px;font-size:.74rem;white-space:nowrap}
+.nav{top:36px}
+.shift-lights{top:36px}
+.hero{padding-top:calc(clamp(8rem,15vw,12rem) + 36px)}
+.hero-promise{margin:1.5rem 0 0;font-size:clamp(1.05rem,1.6vw,1.3rem);color:#d7dde5}
+.hero-promise strong{color:var(--green)}
+.hero-visual{display:flex;flex-direction:column;align-items:center;gap:14px}
+.phone-mock{width:min(300px,82vw);background:#0b141a;border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:14px 12px 18px;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 44px rgba(0,255,136,.07)}
+.chat-head{display:flex;align-items:center;gap:10px;padding:4px 4px 12px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:12px}
+.chat-avatar{width:38px;height:38px;border-radius:50%;background:var(--green);color:#04140b;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:1.1rem}
+.chat-head strong{display:block;font-size:.9rem}
+.chat-head small{color:#8696a0;font-size:.72rem}
+.msg{max-width:88%;padding:8px 12px;border-radius:12px;font-size:.82rem;line-height:1.4;margin-bottom:8px}
+.msg.in{background:#1f2c34;color:#e9edef;align-self:flex-start;border-top-left-radius:2px}
+.msg.out{background:#005c4b;color:#e9edef;align-self:flex-end;border-top-right-radius:2px}
+.hero-visual-cap{color:var(--muted);font-size:.85rem;margin:0}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:2.4rem}
+.pain-grid article{background:rgba(255,255,255,.03);border:1px solid var(--line);padding:1.6rem}
+.pain-grid h3{font-size:clamp(1.4rem,2.2vw,1.8rem);margin-bottom:.7rem}
+.pain-grid p{color:var(--muted);margin:0}
+.clients{padding:2.8rem 0;border-block:1px solid rgba(255,255,255,.06);text-align:center;overflow:hidden}
+.clients .eyebrow{margin-bottom:1.5rem}
+.logo-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.logo-track{display:flex;gap:3.5rem;width:max-content;animation:marquee 30s linear infinite}
+.logo-track span{font-family:var(--display);font-weight:700;font-size:1.35rem;letter-spacing:-.02em;color:#5b6673;white-space:nowrap}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.price-card .anchor{font-size:.85rem;color:var(--lime);background:rgba(181,255,82,.07);border:1px dashed rgba(181,255,82,.35);padding:.7rem .9rem;margin:.9rem 0 0;line-height:1.45}
+.sticky-cta{display:none}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.logo-track{animation:none}}
+@media(max-width:850px){.pain-grid{grid-template-columns:1fr}}
+@media(max-width:720px){.sticky-cta{display:flex;position:fixed;left:14px;right:14px;bottom:14px;z-index:30;align-items:center;justify-content:center;min-height:54px;background:var(--green);color:#04140b;font-weight:800;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.5)}}
+@media(max-width:520px){.hero{padding-top:calc(7rem + 36px)}.topbar-inner{font-size:.7rem;gap:8px}}
