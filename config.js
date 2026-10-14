@@ -20,7 +20,7 @@ export const PRECIOS = {
   },
   contenido: {
     nombre: "Contenido de alta retención",
-    precio: "$1.600.000",
+    precio: "$1.900.000",
     tipo: "al mes",
     resumen: "Un sistema editorial para publicar con intención, no por llenar el calendario.",
     incluye: ["10 a 12 reels, 5 carruseles y 25 historias al mes.", "Dirección editorial, guiones y calendario mensual.", "Edición, diseño, motion y postproducción.", "Programación, publicación, llamados a la acción e informe mensual.", "Pago por adelantado cada mes."]
