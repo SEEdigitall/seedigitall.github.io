@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = "573227693719";
+export const WHATSAPP_NUMBER = "573118824271";
 export const META_PIXEL_ID = "";
 export const GA4_ID = "";
 export const SITE_URL = "https://seedigitall.github.io/";
