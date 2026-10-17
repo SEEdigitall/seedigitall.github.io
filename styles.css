@@ -64,3 +64,7 @@ html,body{max-width:100%;overflow-x:hidden}img,video{max-width:100%}.about-logo{
 .pf-meta{display:block;font-size:.78rem;color:#8f9baa}
 @media(max-width:850px){.portfolio-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.portfolio-grid{grid-template-columns:1fr}}
+
+.price-card.single{grid-column:2/span 4;max-width:680px;margin-inline:auto;text-align:left}
+.price-note{color:var(--green);font-weight:700;font-size:.9rem}
+@media(max-width:850px){.price-card.single{grid-column:auto;max-width:none}}
