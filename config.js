@@ -14,6 +14,6 @@ export const SISTEMA = {
     "Campañas en Meta Ads orientadas a conversaciones por WhatsApp.",
     "Bono de $500.000 al mes en crédito de pauta en Meta, incluido en el precio.",
     "Optimización continua y reporte ejecutivo mensual.",
-    "Sin permanencia mínima. Pago anticipado mensual."
+    "Sin permanencia mínima. Pago 50% al inicio y 50% al final del mes."
   ]
 };
