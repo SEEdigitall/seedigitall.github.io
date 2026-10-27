@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portafolio — Eduar Espitia · SEEdigital</title>
 <meta name="description" content="Portafolio de trabajo reciente de Eduar Espitia (SEEdigital): producción de contenido, gestión de redes y Meta Ads para Yamaha Motoauto, marzo–septiembre 2026.">
+<meta name="robots" content="noindex, nofollow">
+<script>if(sessionStorage.getItem('pf_ok')!=='1'){document.documentElement.classList.add('locked')}</script>
 <style>
   :root{--bg:#0d1117;--panel:#12161d;--line:#1f2733;--txt:#e8edf2;--mut:#8b949e;--cyan:#00c6ff;--wa:#25d366}
   *{margin:0;padding:0;box-sizing:border-box}
@@ -60,9 +62,45 @@
   .btn{display:inline-block;background:var(--wa);color:#06130b;font-weight:700;padding:13px 26px;border-radius:999px}
   .btn:hover{text-decoration:none;filter:brightness(1.08)}
   footer{border-top:1px solid var(--line);padding:20px 0 30px;color:var(--mut);font-size:13.5px;text-align:center}
+  html.locked body>*:not(#gate){filter:blur(16px);pointer-events:none;user-select:none}
+  html.locked body{overflow:hidden}
+  #gate{display:none}
+  html.locked #gate{display:flex;position:fixed;inset:0;z-index:999;background:#0d1117;align-items:center;justify-content:center;padding:20px}
+  .gate-card{text-align:center;max-width:340px;width:100%}
+  .gate-card .logo{font-size:22px;margin-bottom:6px}
+  .gate-card p{color:var(--mut);font-size:14.5px;margin-bottom:20px}
+  .gate-card input{width:100%;padding:13px 16px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--txt);font-size:17px;text-align:center;letter-spacing:4px;outline:none}
+  .gate-card input:focus{border-color:var(--cyan)}
+  .gate-card button{width:100%;margin-top:12px;padding:13px;border:0;border-radius:999px;background:var(--cyan);color:#04222e;font-weight:700;font-size:15.5px;cursor:pointer}
+  .gate-err{color:#ff7b72;font-size:13.5px;min-height:20px;margin-top:10px}
 </style>
 </head>
 <body>
+<div id="gate" role="dialog" aria-label="Acceso al portafolio">
+  <form class="gate-card" id="gate-form">
+    <div class="logo">SEE<span style="color:var(--cyan)">digital</span> · Portafolio</div>
+    <p>Esta página está en ajuste. Ingresa el código de acceso para verla.</p>
+    <input id="gate-code" type="password" inputmode="numeric" autocomplete="off" placeholder="Código" aria-label="Código de acceso">
+    <button type="submit">Entrar</button>
+    <div class="gate-err" id="gate-err"></div>
+  </form>
+</div>
+<script>
+(function(){
+  var HASH='d54123de468bd42ea00dafbd777f85fe5fa1ff6404d9838c007953c25c92a1c5';
+  function unlock(){document.documentElement.classList.remove('locked');sessionStorage.setItem('pf_ok','1');}
+  if(!document.documentElement.classList.contains('locked')){sessionStorage.setItem('pf_ok','1');}
+  document.getElementById('gate-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=document.getElementById('gate-code').value.trim();
+    crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)).then(function(buf){
+      var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+      if(hex===HASH){unlock();}
+      else{document.getElementById('gate-err').textContent='Código incorrecto. Intenta de nuevo.';}
+    });
+  });
+})();
+</script>
 <header>
   <div class="wrap nav">
     <div class="logo">SEE<span>digital</span> · Portafolio</div>
